@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git$
+^data-raw$
+^CODE_OF_CONDUCT\.md$
+^README\.Rmd$
+^appveyor\.yml$
+^\.travis\.yml$
