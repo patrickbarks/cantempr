@@ -2,11 +2,13 @@ Package: cantempr
 Type: Package
 Title: Canadian Homogenized Temperature Data in R
 Version: 0.1.0
-Author: Patrick Barks
-Maintainer: Patrick Barks <patrick.barks@gmail.com>
+Authors@R: c(
+    person("Patrick", "Barks", , "patrick.barks@gmail.com", role = c("aut", "cre")))
 Description: Homogenized temperature data for 339 Canadian climate stations,
   at monthly, seasonal, and yearly intervals.
 License: GPL-2 | file LICENSE
+URL: https://github.com/patrickbarks/cantempr
+BugReports: https://github.com/patrickbarks/cantempr/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
