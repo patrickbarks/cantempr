@@ -3,6 +3,8 @@
 cantempr
 ========
 
+[![Travis build status](https://travis-ci.org/patrickbarks/cantempr.svg?branch=master)](https://travis-ci.org/patrickbarks/cantempr) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/patrickbarks/cantempr?branch=master&svg=true)](https://ci.appveyor.com/project/patrickbarks/cantempr) [![Coverage status](https://codecov.io/gh/patrickbarks/cantempr/branch/master/graph/badge.svg)](https://codecov.io/github/patrickbarks/cantempr?branch=master)
+
 An R package to access long-term homogenized temperature data for 339 Canadian climate stations (for some stations data is available as far back as 1841). These data come from [Vincent et al. (2012)](https://doi.org/10.1029/2012JD017859), and are available in station-specific text files from [Environment and Climate Change Canada](https://www.canada.ca/en/environment-climate-change/services/climate-change/science-research-data/climate-trends-variability/adjusted-homogenized-canadian-data/surface-air-temperature-access.html) (see file 'Monthly mean of daily mean temperature').
 
 **Data citation**: Vincent, L. A., X. L. Wang, E. J. Milewska, H. Wan, F. Yang, and V. Swail (2012) A second generation of homogenized Canadian monthly surface air temperature for climate trend analysis. Journal of Geophysical Research 117(D18110). <https://doi.org/10.1029/2012JD017859>
