@@ -1,6 +1,6 @@
-#' Fetch homogenized temperature data for 339 Canadian climate stations
+#' Fetch homogenized temperature data for 338 Canadian climate stations
 #'
-#' Fetch a tidy \code{data.frame} with homogenized temperatures for 339 Canadian
+#' Fetch a tidy \code{data.frame} with homogenized temperatures for 338 Canadian
 #' climate stations, optionally subset to a given interval (monthly, seasonal,
 #' or annual).
 #'
@@ -8,7 +8,7 @@
 #'   intervals), \code{"seasonal"} (seasonal intervals), \code{"annual"} (annual
 #'   intervals), or \code{"all"} (all intervals combined).
 #'
-#' @return A \code{data.frame} with homogenized temperature data for 339
+#' @return A \code{data.frame} with homogenized temperature data for 338
 #'   Canadian climate stations, averaged at the specified \code{interval}.
 #'   Columns include:
 #'

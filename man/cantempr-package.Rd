@@ -5,7 +5,7 @@
 \alias{cantempr-package}
 \title{\pkg{cantempr}}
 \description{
-An R package to access homogenized temperature data for 339 Canadian climate
+An R package to access homogenized temperature data for 338 Canadian climate
 stations. These data come from
 \href{https://doi.org/10.1029/2012JD017859}{Vincent et al. (2012)}, and are
 available from

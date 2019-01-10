@@ -2,7 +2,7 @@
 % Please edit documentation in R/cantemp_fetch.R
 \name{cantemp_fetch}
 \alias{cantemp_fetch}
-\title{Fetch homogenized temperature data for 339 Canadian climate stations}
+\title{Fetch homogenized temperature data for 338 Canadian climate stations}
 \usage{
 cantemp_fetch(interval = "annual")
 }
@@ -12,7 +12,7 @@ intervals), \code{"seasonal"} (seasonal intervals), \code{"annual"} (annual
 intervals), or \code{"all"} (all intervals combined).}
 }
 \value{
-A \code{data.frame} with homogenized temperature data for 339
+A \code{data.frame} with homogenized temperature data for 338
   Canadian climate stations, averaged at the specified \code{interval}.
   Columns include:
 
@@ -30,7 +30,7 @@ homogeneity, \code{NA}: original value)}
 }
 }
 \description{
-Fetch a tidy \code{data.frame} with homogenized temperatures for 339 Canadian
+Fetch a tidy \code{data.frame} with homogenized temperatures for 338 Canadian
 climate stations, optionally subset to a given interval (monthly, seasonal,
 or annual).
 }

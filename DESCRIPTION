@@ -4,7 +4,7 @@ Title: Canadian Homogenized Temperature Data in R
 Version: 0.1.0
 Authors@R: c(
     person("Patrick", "Barks", , "patrick.barks@gmail.com", role = c("aut", "cre")))
-Description: Homogenized temperature data for 339 Canadian climate stations,
+Description: Homogenized temperature data for 338 Canadian climate stations,
   at monthly, seasonal, and yearly intervals.
 License: GPL-2 | file LICENSE
 URL: https://github.com/patrickbarks/cantempr

@@ -5,7 +5,7 @@ cantempr
 
 [![Travis build status](https://travis-ci.org/patrickbarks/cantempr.svg?branch=master)](https://travis-ci.org/patrickbarks/cantempr) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/patrickbarks/cantempr?branch=master&svg=true)](https://ci.appveyor.com/project/patrickbarks/cantempr) [![Coverage status](https://codecov.io/gh/patrickbarks/cantempr/branch/master/graph/badge.svg)](https://codecov.io/github/patrickbarks/cantempr?branch=master)
 
-An R package to access long-term homogenized temperature data for 339 Canadian climate stations (for some stations data is available as far back as 1841). These data come from [Vincent et al. (2012)](https://doi.org/10.1029/2012JD017859), and are available in station-specific text files from [Environment and Climate Change Canada](https://www.canada.ca/en/environment-climate-change/services/climate-change/science-research-data/climate-trends-variability/adjusted-homogenized-canadian-data/surface-air-temperature-access.html) (see file 'Monthly mean of daily mean temperature').
+An R package to access long-term homogenized temperature data for 338 Canadian climate stations (for some stations data is available as far back as 1841). These data come from [Vincent et al. (2012)](https://doi.org/10.1029/2012JD017859), and are available in station-specific text files from [Environment and Climate Change Canada](https://www.canada.ca/en/environment-climate-change/services/climate-change/science-research-data/climate-trends-variability/adjusted-homogenized-canadian-data/surface-air-temperature-access.html) (see file 'Monthly mean of daily mean temperature').
 
 **Data citation**: Vincent, L. A., X. L. Wang, E. J. Milewska, H. Wan, F. Yang, and V. Swail (2012) A second generation of homogenized Canadian monthly surface air temperature for climate trend analysis. Journal of Geophysical Research 117(D18110). <https://doi.org/10.1029/2012JD017859>
 
@@ -15,7 +15,7 @@ Installation
 Install from GitHub with:
 
 ``` r
-# install package 'remotes' if necessary (a dependency of devtools)
+# first install package 'remotes' if necessary (a dependency of devtools)
 # install.packages("remotes") 
 remotes::install_github("patrickbarks/cantempr")
 ```
@@ -29,23 +29,13 @@ library(cantempr)
 
 #### Fetch data
 
-Temperature data is available at monthly, seasonal, and annual intervals.
+Temperature data can be fetched using the `cantemp_fetch()` function. Temperature data is available at monthly, seasonal, and annual intervals (selected with argument `interval`).
 
 ``` r
-# get data for monthly intervals
-temp_monthly <- cantemp_fetch(interval = "monthly")
-
-# get data for seasonal intervals
-temp_seasonal <- cantemp_fetch(interval = "seasonal")
-
-# get data for annual intervals
-temp_annual <- cantemp_fetch(interval = "annual")
-
-# get data for all intervals
-temp_all <- cantemp_fetch(interval = "all")
+temp_annual <- cantemp_fetch(interval = "annual") # fetch annual data
 ```
 
-Let's take a peek at the annual data.
+Let's take a peek.
 
 ``` r
 head(temp_annual)
@@ -58,9 +48,15 @@ head(temp_annual)
 #> 6   BC SHAWNIGAN LAKE 1017230 1919   Annual  8.7    a
 ```
 
+We can also fetch station-specific metadata (including lat/lon/elevation, and details on the temporal extent of the temperature data) using the function `cantemp_meta()`.
+
+``` r
+stn_metadata <- cantemp_meta()
+```
+
 #### Barcode plot
 
-Here's an example ['barcode plot'](https://www.cbc.ca/news/technology/charts-climate-change-bar-codes-1.4802293) using a time-series of mean annual temperatures in Toronto, Ontario.
+The `cantempr` package includes a function to produce 'temperature barcode plots' (see examples [here](https://www.cbc.ca/news/technology/charts-climate-change-bar-codes-1.4802293)). Here's an example barcode plot using a time-series of mean annual temperatures in Toronto, Ontario.
 
 ``` r
 library(ggplot2)
@@ -73,7 +69,7 @@ cantemp_barcode(temp_to, x_breaks = seq(1850, 2010, 20)) +
   ggtitle(paste("Mean annual temperatures in Toronto since", min(temp_to$year)))
 ```
 
-![](man/img/unnamed-chunk-6-1.png)
+![](man/img/unnamed-chunk-7-1.png)
 
 #### Seasonal temperature trends
 
@@ -81,6 +77,7 @@ Here's a more traditional plot of long-term temperature trends, by season, in Ha
 
 ``` r
 # subset to seasonal temperature data for Hay River, Northwest Territories
+temp_seasonal <- cantemp_fetch(interval = "seasonal")
 temp_hr <- subset(temp_seasonal, station == "HAY RIVER" & !is.na(temp))
 
 # plot
@@ -94,7 +91,7 @@ ggplot(temp_hr, aes(year, temp)) +
   theme_minimal() + theme(axis.title = element_blank())
 ```
 
-![](man/img/unnamed-chunk-7-1.png)
+![](man/img/unnamed-chunk-8-1.png)
 
 Contributions
 -------------
