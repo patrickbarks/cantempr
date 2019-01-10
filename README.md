@@ -27,16 +27,16 @@ Usage
 library(cantempr)
 ```
 
-##### Fetch data
+#### Fetch data
 
 Temperature data is available at monthly, seasonal, and annual intervals.
 
 ``` r
 # get data for monthly intervals
-temp_month <- cantemp_fetch(interval = "monthly")
+temp_monthly <- cantemp_fetch(interval = "monthly")
 
 # get data for seasonal intervals
-temp_season <- cantemp_fetch(interval = "seasonal")
+temp_seasonal <- cantemp_fetch(interval = "seasonal")
 
 # get data for annual intervals
 temp_annual <- cantemp_fetch(interval = "annual")
@@ -58,7 +58,7 @@ head(temp_annual)
 #> 6   BC SHAWNIGAN LAKE 1017230 1919   Annual  8.7    a
 ```
 
-##### Example plot
+#### Barcode plot
 
 Here's an example ['barcode plot'](https://www.cbc.ca/news/technology/charts-climate-change-bar-codes-1.4802293) using a time-series of mean annual temperatures in Toronto, Ontario.
 
@@ -66,24 +66,35 @@ Here's an example ['barcode plot'](https://www.cbc.ca/news/technology/charts-cli
 library(ggplot2)
 
 # subset annual temperature data to Toronto
-to_annual <- subset(temp_annual, station == "TORONTO" & !is.na(temp))
+temp_to <- subset(temp_annual, station == "TORONTO")
 
-# create 'barcode plot'
-ggplot(to_annual, aes(year, 1, fill = temp)) +
-  geom_tile() +
-  scale_x_continuous(expand = c(0, 0)) +
-  scale_y_continuous(expand = c(0.02, 0)) +
-  scale_fill_gradient2(low = "blue", high = "darkred",
-                       midpoint = mean(to_annual$temp),
-                       breaks = function(x) seq(x[1], x[2], length.out = 5),
-                       labels = function(x) paste(formatC(x, format = "f", digits = 1), "\u00B0C"),
-                       name = NULL) +
-  ggtitle(paste("Mean annual temperatures in Toronto since", min(to_annual$year))) +
-  theme_void() +
-  theme(axis.text.x = element_text(), legend.margin = margin(0, 0, 0, 5))
+# create barcode plot
+cantemp_barcode(temp_to, x_breaks = seq(1850, 2010, 20)) +
+  ggtitle(paste("Mean annual temperatures in Toronto since", min(temp_to$year)))
 ```
 
 ![](man/img/unnamed-chunk-6-1.png)
+
+#### Seasonal temperature trends
+
+Here's a more traditional plot of long-term temperature trends, by season, in Hay River, Northwest Territories.
+
+``` r
+# subset to seasonal temperature data for Hay River, Northwest Territories
+temp_hr <- subset(temp_seasonal, station == "HAY RIVER" & !is.na(temp))
+
+# plot
+ggplot(temp_hr, aes(year, temp)) +
+  geom_line() +
+  geom_smooth(method = "loess") +
+  scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  scale_y_continuous(labels = function(x) paste0(x, "\u00B0C")) +
+  facet_wrap(~ interval, ncol = 2, scales = "free_y") +
+  ggtitle(paste("Mean seasonal temperatures in Hay River, NWT, since", min(temp_hr$year))) +
+  theme_minimal() + theme(axis.title = element_blank())
+```
+
+![](man/img/unnamed-chunk-7-1.png)
 
 Contributions
 -------------
