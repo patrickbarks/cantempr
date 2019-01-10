@@ -9,17 +9,18 @@
 #'   intervals), or \code{"all"} (all intervals combined).
 #'
 #' @return A \code{data.frame} with homogenized temperature data for 339
-#' Canadian climate stations, averaged at the specified \code{interval}.
+#'   Canadian climate stations, averaged at the specified \code{interval}.
+#'   Columns include:
 #'
-#' describe{
-#' item{prov}{Two-letter abbreviation for province}
-#' item{station}{Name of climate station}
-#' item{stnid}{Climate station identifier}
-#' item{year}{Observation year}
-#' item{period}{Observation period (either a month, season, or "Annual", as
+#' \describe{
+#' \item{prov}{Two-letter abbreviation for province}
+#' \item{station}{Name of climate station}
+#' \item{stnid}{Climate station identifier}
+#' \item{year}{Observation year}
+#' \item{period}{Observation period (either a month, season, or "Annual", as
 #' specified in argument \code{interval})}
-#' item{temp}{Observed mean temperature in degrees celcius}
-#' item{flag}{Flag giving information about temperature data (\code{M}: missing
+#' \item{temp}{Observed mean temperature in degrees celcius}
+#' \item{flag}{Flag giving information about temperature data (\code{M}: missing
 #' value, \code{E}: estimated during archiving process, \code{a}: adjusted for
 #' homogeneity, \code{NA}: original value)}
 #' }
