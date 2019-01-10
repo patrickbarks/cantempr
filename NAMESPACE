@@ -2,4 +2,5 @@
 
 export(cantemp_barcode)
 export(cantemp_fetch)
+export(cantemp_meta)
 import(ggplot2)

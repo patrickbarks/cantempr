@@ -64,7 +64,18 @@ cantemp <- clim_full %>%
   as.data.frame()
 
 
-### write to rda
-usethis::use_data(cantemp, overwrite = TRUE, internal = TRUE)
+### station metadata
+cantemp_metadata <- read_csv("data-raw/Temperature_Stations.csv") %>%
+  setNames(gsub(" ", "_", tolower(names(.)))) %>%
+  rename(lat = `lat_(deg)`, lon = `long_(deg)`, elev = `elev_(m)`) %>%
+  mutate(stns_joined = ifelse(stns_joined == "Y", TRUE, FALSE)) %>%
+  mutate(beg_yr = as.integer(beg_yr),
+         beg_mon = as.integer(beg_mon),
+         end_yr = as.integer(end_yr),
+         end_mon = as.integer(end_mon)) %>%
+  as.data.frame()
 
+
+### write to rda
+usethis::use_data(cantemp, cantemp_metadata, overwrite = TRUE, internal = TRUE)
 
